@@ -9,8 +9,8 @@ class Song
         self.name = name
         self.artist = artist
         self.genre = genre
-        self.class.genres << self.genre
-        self.class.artists << self.artist
+        @@genres << self.genre
+        @@artists << self.artist
         @@count += 1
     end
 
@@ -19,14 +19,15 @@ class Song
     end
 
     def self.genres
-        @@genres
+        @@genres.uniq
     end
 
     def self.genre_count
+        genre_count = @@genres.detect{ |e| @@genres.count(e) > 1 }
     end
 
     def self.artists
-        artist_list = @@artists.uniq
+        @@artists.uniq
 
     end
 
