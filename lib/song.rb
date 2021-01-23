@@ -23,7 +23,16 @@ class Song
     end
 
     def self.genre_count
-        genre_count = @@genres.detect{ |e| @@genres.count(e) > 1 }
+        
+        genre_count = {}
+        @@genres.each do | item |
+            if !genre_count.key?(item)
+                genre_count[item] = 1
+            elsif genre_count.key?(item)
+                genre_count[item] = genre_count[item] + 1
+            end
+        end
+        genre_count
     end
 
     def self.artists
@@ -32,5 +41,14 @@ class Song
     end
 
     def self.artist_count
+        artist_count = {}
+        @@artists.each do | item |
+            if !artist_count.key?(item)
+                artist_count[item] = 1
+            elsif artist_count.key?(item)
+                artist_count[item] = artist_count[item] + 1
+            end
+        end
+        artist_count
     end
 end
